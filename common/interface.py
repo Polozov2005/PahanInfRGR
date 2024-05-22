@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
 from ctypes import windll
-import numpy as np
 
 import equation
 import initialization
@@ -338,151 +337,23 @@ def click_solve():
             title='Ошибка в ходе решения уравнения',
             message='В ходе решения на главной диагонали оказался ноль - система не совместна'
         )
+
     else:
-        U_list = np.round(U_list, 2)
-
-        for k in range(-((-len(U_list)+1)//9)):
-            label_i_U = Label(
-                frm_U,
-                text='i'
-            )
-
-            label_i_U.grid(
-                row=2*k,
-                column=0,
-            )
-
-            label_U = Label(
-                frm_U,
-                text='U[i], кВ'
-            )
-
-            label_U.grid(
-                row=2*k + 1,
-                column=0,
-            )
-
-            for i in range(1, 9 + 1):
-                delta = (len(U_list) - 1) - 9*k
-                if delta < 9:
-                    for j in range(1, delta + 1):
-                        label_count = Label(
-                            frm_U,
-                            text=str(j + 9*k)
-                        )
-
-                        label_count.grid(
-                            row=2*k,
-                            column=j,
-                            sticky=NSEW
-                        )
-                        
-                        label_U_list = Label(
-                            frm_U,
-                            text=str(U_list[j + 9*k])
-                        )
-
-                        label_U_list.grid(
-                            row=2*k + 1,
-                            column=j,
-                            sticky=NSEW
-                        )
-
-                else:
-                    label_count = Label(
-                        frm_U,
-                        text=str(i + 9*k)
-                    )
-
-                    label_count.grid(
-                        row=2*k,
-                        column=i,
-                        sticky=NSEW
-                    )
-                    
-                    label_U_list = Label(
-                        frm_U,
-                        text=str(U_list[i + 9*k])
-                    )
-
-                    label_U_list.grid(
-                        row=2*k + 1,
-                        column=i,
-                        sticky=NSEW
-                    )
-            
         X_list = equation.X(U_list)['list']
+
         saving.X(X_list=X_list)
+        
+        label_X_1["text"] = 'X1 = '+ str(X_list[1]) + ' кВ'
+        label_X_2["text"] = 'X2 = '+ str(X_list[2]) + ' кВ'
+        label_X_3["text"] = 'X3 = '+ str(X_list[3]) + ' кВ'
+        label_X_4["text"] = 'X4 = '+ str(X_list[4]) + ' кВ'
+        label_X_5["text"] = 'X5 = '+ str(X_list[5]) + ' кВ'
+        label_X_6["text"] = 'X6 = '+ str(X_list[6]) + ' кВ'
+        label_X_7["text"] = 'X7 = '+ str(X_list[7]) + ' кВ'
+        label_X_8["text"] = 'X8 = '+ str(X_list[8]) + ' кВ'
+        label_X_9["text"] = 'X9 = '+ str(X_list[9]) + ' кВ'
+        label_X_10["text"] = 'X10 = '+ str(X_list[10]) + ' кВ'
 
-        for k in range(-((-len(X_list)+1)//9)):
-            label_i_X = Label(
-                frm_X,
-                text='i'
-            )
-
-            label_i_X.grid(
-                row=2*k,
-                column=0,
-            )
-
-            label_X = Label(
-                frm_X,
-                text='X[i], кВ'
-            )
-
-            label_X.grid(
-                row=2*k + 1,
-                column=0,
-            )
-
-            for i in range(1, 9 + 1):
-                delta = (len(X_list) - 1) - 9*k
-                if delta < 9:
-                    for j in range(1, delta + 1):
-                        label_count = Label(
-                            frm_X,
-                            text=str(j + 9*k)
-                        )
-
-                        label_count.grid(
-                            row=2*k,
-                            column=j,
-                            sticky=NSEW
-                        )
-                        
-                        label_X_list = Label(
-                            frm_X,
-                            text=str(X_list[j + 9*k])
-                        )
-
-                        label_X_list.grid(
-                            row=2*k + 1,
-                            column=j,
-                            sticky=NSEW
-                        )
-
-                else:
-                    label_count = Label(
-                        frm_X,
-                        text=str(i + 9*k)
-                    )
-
-                    label_count.grid(
-                        row=2*k,
-                        column=i,
-                        sticky=NSEW
-                    )
-                    
-                    label_X_list = Label(
-                        frm_X,
-                        text=str(X_list[i + 9*k])
-                    )
-
-                    label_X_list.grid(
-                        row=2*k + 1,
-                        column=i,
-                        sticky=NSEW
-                    )
 
 btn_solve = Button(
     frm_solveandsave,
@@ -493,97 +364,10 @@ btn_solve.grid(row=0, column=0)
 frm_solveandsave.columnconfigure(index=0, weight=1)
 frm_solveandsave.rowconfigure(index=0, weight=1)
 
-### U
-# U_list = np.zeros([16 + 1], dtype=np.complex64)
-
-# for k in range(-((-len(U_list)+1)//9)):
-#     label_i_U = Label(
-#         frm_U,
-#         text='i'
-#     )
-
-#     label_i_U.grid(
-#         row=2*k,
-#         column=0,
-#         sticky=NSEW
-#     )
-
-#     label_U = Label(
-#         frm_U,
-#         text='U[i], кВ'
-#     )
-
-#     label_U.grid(
-#         row=2*k + 1,
-#         column=0,
-#         sticky=NSEW
-#     )
-
-#     for i in range(1, 9 + 1):
-#         delta = (len(U_list) - 1) - 9*k
-#         if delta < 9:
-#             for j in range(1, delta + 1):
-#                 label_count = Label(
-#                     frm_U,
-#                     text=str(j + 9*k)
-#                 )
-
-#                 label_count.grid(
-#                     row=2*k,
-#                     column=j,
-#                     sticky=NSEW
-#                 )
-                
-#                 label_U_list = Label(
-#                     frm_U,
-#                     text=str(U_list[j + 9*k])
-#                 )
-
-#                 label_U_list.grid(
-#                     row=2*k + 1,
-#                     column=j,
-#                     sticky=NSEW
-#                 )
-
-#         else:
-#             label_count = Label(
-#                 frm_U,
-#                 text=str(i + 9*k)
-#             )
-
-#             label_count.grid(
-#                 row=2*k,
-#                 column=i,
-#                 sticky=NSEW
-#             )
-            
-#             label_U_list = Label(
-#                 frm_U,
-#                 text=str(U_list[i + 9*k])
-#             )
-
-#             label_U_list.grid(
-#                 row=2*k + 1,
-#                 column=i,
-#                 sticky=NSEW
-#             )
-
-# for i in range(10):
-#     frm_U.columnconfigure(
-#         index=i,
-#         weight=1
-#     )
-
-# for i in range(4):
-#     frm_U.rowconfigure(
-#         index=i,
-#         weight=1
-#     )
-
 ### X
 label_X_1 = Label(
     frm_X,
-    text='X1 = 0'
+    text='X1 = 0 кВ'
 )
 
 label_X_1.grid(
@@ -593,7 +377,7 @@ label_X_1.grid(
 
 label_X_2 = Label(
     frm_X,
-    text='X2 = 0'
+    text='X2 = 0 кВ'
 )
 
 label_X_2.grid(
@@ -603,7 +387,7 @@ label_X_2.grid(
 
 label_X_3 = Label(
     frm_X,
-    text='X3 = 0'
+    text='X3 = 0 кВ'
 )
 
 label_X_3.grid(
@@ -611,5 +395,74 @@ label_X_3.grid(
     column=0
 )
 
+label_X_4 = Label(
+    frm_X,
+    text='X4 = 0 кВ'
+)
+
+label_X_4.grid(
+    row=3,
+    column=0
+)
+
+label_X_5 = Label(
+    frm_X,
+    text='X5 = 0 кВ'
+)
+
+label_X_5.grid(
+    row=4,
+    column=0
+)
+
+label_X_6 = Label(
+    frm_X,
+    text='X6 = 0 кВ'
+)
+
+label_X_6.grid(
+    row=5,
+    column=0
+)
+
+label_X_7 = Label(
+    frm_X,
+    text='X7 = 0 кВ'
+)
+
+label_X_7.grid(
+    row=6,
+    column=0
+)
+
+label_X_8 = Label(
+    frm_X,
+    text='X8 = 0 кВ'
+)
+
+label_X_8.grid(
+    row=7,
+    column=0
+)
+
+label_X_9 = Label(
+    frm_X,
+    text='X9 = 0 кВ'
+)
+
+label_X_9.grid(
+    row=8,
+    column=0
+)
+
+label_X_10 = Label(
+    frm_X,
+    text='X10 = 0 кВ'
+)
+
+label_X_10.grid(
+    row=9,
+    column=0
+)
 
 interface_initialization()
